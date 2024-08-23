@@ -19,6 +19,7 @@ public class Database {
                 // default username / password
                 .setProperty(USER, "sa")
                 .setProperty(PASS, "")
+                .setProperty("hibernate.agroal.maxSize", "20")
                 // options to display SQL in console
                 .setProperty(SHOW_SQL, TRUE.toString())
                 .setProperty(FORMAT_SQL, TRUE.toString())

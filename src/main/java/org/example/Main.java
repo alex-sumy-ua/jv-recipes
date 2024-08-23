@@ -9,6 +9,8 @@ public class Main {
         try (SessionFactory sessionFactory  = HibernateUtil.buildSessionFactory()) {
 
             Session session = sessionFactory.openSession();
+
+//            session.persist();
         }
     }
 }
