@@ -2,6 +2,7 @@ package org.example;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.example.db.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +11,7 @@ public class Main {
 
             Session session = sessionFactory.openSession();
 
-//            session.persist();
+            session.persist(new Recipe());
         }
     }
 }
