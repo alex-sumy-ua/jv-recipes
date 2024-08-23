@@ -7,7 +7,7 @@ import org.example.db.*;
 public class Main {
     public static void main(String[] args) {
 
-        try (SessionFactory sessionFactory  = HibernateUtil.buildSessionFactory()) {
+        try (SessionFactory sessionFactory  = Database.getSessionFactory()) {
 
             Session session = sessionFactory.openSession();
 

@@ -28,6 +28,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(Recipe.class)
                     .buildMetadata()
                     .buildSessionFactory();
+
             sessionFactory.getSchemaManager();
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
