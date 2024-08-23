@@ -28,7 +28,9 @@ public class Recipe {
     int rating;
 
     @ElementCollection
-    List<Integer> listOfIngredients;
+    @ManyToOne(fetch = FetchType.LAZY)
+            Ingredient ingredient;
+    List<Ingredient> listOfIngredients;
 
     @ElementCollection
     List<Integer> listOfCategories;
@@ -47,7 +49,7 @@ public class Recipe {
         this.title = title;
     }
 
-    public Recipe(Long id, String title, String description, String instructions, int preparationTime, int cookingTime, int servings, Level difficultyLevel, int rating, List<Integer> listOfIngredients, List<Integer> listOfCategories, int creator, Date dateCreated, Date lastModified) {
+    public Recipe(Long id, String title, String description, String instructions, int preparationTime, int cookingTime, int servings, Level difficultyLevel, int rating, List<Ingredient> listOfIngredients, List<Integer> listOfCategories, int creator, Date dateCreated, Date lastModified) {
         this.id = id;
         this.title = title;
         this.description = description;
