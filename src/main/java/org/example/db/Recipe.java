@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.example.Level;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Recipe {
     @GeneratedValue
     Long id;
 
-    @NotNull
+//    @NotNull
     String title;
 
     String description;
@@ -45,12 +45,12 @@ public class Recipe {
 
     Date lastModified;
 
-    public Recipe(Long id, @NotNull String title) {
+    public Recipe(Long id, /*@NotNull*/ String title) {
         this.id = id;
         this.title = title;
     }
 
-    public Recipe(Long id, @NotNull String title, String description, String instructions, int preparationTime, int cookingTime, int servings, Level difficultyLevel, int rating, ArrayList<Integer> listOfIngredients, ArrayList<Integer> listOfCategories, int creator, Date dateCreated, Date lastModified) {
+    public Recipe(Long id, /*@NotNull*/ String title, String description, String instructions, int preparationTime, int cookingTime, int servings, Level difficultyLevel, int rating, ArrayList<Integer> listOfIngredients, ArrayList<Integer> listOfCategories, int creator, Date dateCreated, Date lastModified) {
         this.id = id;
         this.title = title;
         this.description = description;

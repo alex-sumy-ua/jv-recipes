@@ -11,7 +11,9 @@ public class Main {
 
             Session session = sessionFactory.openSession();
 
-            session.persist(new Recipe());
+            session.persist(new Recipe(1L, "Apple pie"));
+
+            session.close();
         }
     }
 }

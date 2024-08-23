@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.db.Recipe;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -15,7 +16,7 @@ public class HibernateUtil {
                 .applySetting("hibernate.connection.url", "jdbc:postgresql://localhost:5432/users")
                 .applySetting("hibernate.connection.username", "dimadeloseros1")
                 .applySetting("hibernate.connection.password", "fgmkiller12")
-                .applySetting("hibernate.dialect", "org.hibernate.dialect.PostgreSQL")
+                .applySetting("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
                 .applySetting("hibernate.show_sql", "true")
                 .applySetting("hibernate.format_sql", "true")
                 .applySetting("hibernate.highlight_sql", "true")
@@ -24,10 +25,10 @@ public class HibernateUtil {
 
         try {
             sessionFactory = new MetadataSources(registry)
-                    .addAnnotatedClass(Database.class)
+                    .addAnnotatedClass(Recipe.class)
                     .buildMetadata()
                     .buildSessionFactory();
-//            sessionFactory.getSchemaManager();
+            sessionFactory.getSchemaManager();
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
             throw new ExceptionInInitializerError("Initialization of SessionFactory failed");
