@@ -11,59 +11,42 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    String title;
+    private String title;
 
-    String description;
-    String instructions;
-    int preparationTime;
-    int cookingTime;
-    int servings;
+    private String description;
+    private String instructions;
+    private int preparationTime;
+    private int cookingTime;
+    private int servings;
 
     @Enumerated(EnumType.STRING)
-    Level difficultyLevel;
+    private Level difficultyLevel;
 
-    int rating;
+    private int rating;
 
-    @ElementCollection
-    @ManyToOne(fetch = FetchType.LAZY)
-            Ingredient ingredient;
-    List<Ingredient> listOfIngredients;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Ingredient> listOfIngredients;
 
     @ElementCollection
-    List<Integer> listOfCategories;
+    private List<Integer> listOfCategories;
 
-    int creator; // Assume this is a foreign key to a User entity
+    private int creator;
 
-    Date dateCreated;
-
-    Date lastModified;
+    private Date dateCreated;
+    private Date lastModified;
 
     public Recipe() {
     }
 
-    public Recipe(Long id, String title) {
-        this.id = id;
+    public Recipe(String title, List<Ingredient> listOfIngredients) {
         this.title = title;
-    }
-
-    public Recipe(Long id, String title, String description, String instructions, int preparationTime, int cookingTime, int servings, Level difficultyLevel, int rating, List<Ingredient> listOfIngredients, List<Integer> listOfCategories, int creator, Date dateCreated, Date lastModified) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.instructions = instructions;
-        this.preparationTime = preparationTime;
-        this.cookingTime = cookingTime;
-        this.servings = servings;
-        this.difficultyLevel = difficultyLevel;
-        this.rating = rating;
         this.listOfIngredients = listOfIngredients;
-        this.listOfCategories = listOfCategories;
-        this.creator = creator;
-        this.dateCreated = dateCreated;
-        this.lastModified = lastModified;
+        for (Ingredient ingredient : listOfIngredients) {
+            ingredient.setRecipe(this);
+        }
     }
 
 }

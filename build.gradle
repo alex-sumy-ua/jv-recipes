@@ -12,13 +12,22 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-// the ORM
-    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
-// H2 database
+
+    // the ORM
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'    // H2 database
     runtimeOnly 'com.h2database:h2:2.1.214'
-// Agroal connection pool
+
+    // Agroal connection pool
     implementation 'org.hibernate.orm:hibernate-agroal:6.4.4.Final'
     implementation 'io.agroal:agroal-pool:2.1'
+
+    // Jakarta Persistence API
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // Logging (optional, but recommended)
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.9' // or 'ch.qos.logback:logback-classic:1.4.9'
+
 }
 
 test {
