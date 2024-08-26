@@ -1,9 +1,8 @@
 package org.example;
 
+import org.example.db.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.example.db.Recipe;
-import org.example.db.Ingredient;
 import static java.lang.Boolean.TRUE;
 import static org.hibernate.cfg.JdbcSettings.*;
 
@@ -19,7 +18,13 @@ public class Database {
                 .setProperty("hibernate.format_sql", "true")
                 .setProperty(HIGHLIGHT_SQL, TRUE.toString())
                 .addAnnotatedClass(Recipe.class)
-                .addAnnotatedClass(Ingredient.class)  // Add this if Ingredient is used as an entity
+                .addAnnotatedClass(Ingredient.class)
+                .addAnnotatedClass(Category.class)
+                .addAnnotatedClass(Comment.class)
+                .addAnnotatedClass(Image.class)
+                .addAnnotatedClass(Tag.class)
+                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Rating.class)
                 .buildSessionFactory();
     }
 }

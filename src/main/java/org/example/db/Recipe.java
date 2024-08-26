@@ -17,9 +17,13 @@ public class Recipe {
     private String title;
 
     private String description;
+
     private String instructions;
+
     private int preparationTime;
+
     private int cookingTime;
+
     private int servings;
 
     @Enumerated(EnumType.STRING)
@@ -30,22 +34,30 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Ingredient> listOfIngredients;
 
-    @ElementCollection
-    private List<Integer> listOfCategories;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Category> listOfCategories;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Tag> listOfTags;
 
     private int creator;
 
     private Date dateCreated;
+
     private Date lastModified;
 
     public Recipe() {
     }
 
-    public Recipe(String title, List<Ingredient> listOfIngredients) {
+    public Recipe(String title, List<Ingredient> listOfIngredients, List<Category> listOfCategories) {
         this.title = title;
         this.listOfIngredients = listOfIngredients;
         for (Ingredient ingredient : listOfIngredients) {
             ingredient.setRecipe(this);
+        }
+        this.listOfCategories = listOfCategories;
+        for (Category category : listOfCategories) {
+            category.setRecipe(this);
         }
     }
 
